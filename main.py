@@ -18,20 +18,24 @@ for ipmon in inspermons:
 def main(arquivo,random):
 	while True:
 		op = str(input("Deseja Passear ou Dormir? "))
-		opl = op.lower()
-		if opl == "passear" :
-			inte = random.randrange(len(d))
-			ini = arquivo[inte]
-			with open('inspermons.json') as arquivo:
-				inspermons = json.load(arquivo)
-			for ipmon in inspermons:
-				mostra_ini(ipmon)
 		
-		if opl == "dormir" :
+		if op.lower() == "passear" :
+			inte = random.randrange(len(arquivo))
+			print(arquivo[inte])
+		
+		
+		if op.lower() == "dormir" :
 			break
-		
 		
 		else:
 			print("Comando errado")
 
+
 			
+
+			
+			
+			# with open('inspermons.json') as arquivo:
+				# inspermons = json.load(arquivo)
+			# for ipmon in inspermons:
+				# mostra_ini(ipmon)
