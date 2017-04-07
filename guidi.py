@@ -4,7 +4,7 @@ def combate(ini,ipmon):
         ini[1] + ipmon[2] - ipmon[0]
         if ini[1] > 0:
             print ("Você perdeu a batalha!")
-            break
+            return -1
           
        
         
