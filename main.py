@@ -27,17 +27,23 @@ while True:
 	if op.lower() == "passear" :
 		inte = random.randrange(len(inspermons))
 		ini = inspermons[inte]
-		print("Um {0} selvagem apareceu!".format((ini["nome"]).upper()))
+		print("Um {0} selvagem apareceu! \n".format((ini["nome"]).upper()))
 		for x in inspermons:
 			if x ["nome"] == ini["nome"] :
 				inistat=[x["poder"],x["vida"],x["defesa"]]
 		
-		
-		
-		
-		if hp <= 0:
-			print("No céu tem pão?")
-			break
+		while True:
+			roundf = inistat[0]-fstat[1]+fstat[2]
+			roundini = fstat[0]-inistat[1]+inistat[2]
+			
+			
+			if roundini  <= 0:
+				print("YOU WIN!")
+				break
+				
+			if roundf  <= 0:
+				print("No céu tem pão?")
+				break
 			
 	if op.lower() == "dormir" :
 		break
