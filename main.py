@@ -1,6 +1,8 @@
 import random
 import json
-	
+
+from guidi import Combat
+
 def mostra_ipmon(ipmon):
 	print("Inspermon : {0}".format(ipmon["nome"]))
 	print("poder = {0}".format(ipmon["poder"]))
@@ -11,7 +13,7 @@ with open('inspermons.json') as arquivo:
 		inspermons = json.load(arquivo)
 for ipmon in inspermons:
 		mostra_ipmon(ipmon)
-
+fstat = []
 		
 pokem = str(input("Escolha um inspermon \n"))
 poke = pokem.lower()
@@ -19,9 +21,9 @@ for i in inspermons:
 	if i ["nome"] == poke :
 		fstat=[i["poder"],i["vida"],i["defesa"]]
 # print (fstat)
+gameLoop = True
 
-
-while True:
+while gameLoop:
 	op = str(input("Deseja Passear ou Dormir? \n"))
 		
 	if op.lower() == "passear" :
@@ -33,21 +35,18 @@ while True:
 				inistat=[x["poder"],x["vida"],x["defesa"]]
 		
 		while True:
-			roundf = inistat[0]-fstat[1]+fstat[2]
-			roundini = fstat[0]-inistat[1]+inistat[2]
-			
-			
-			if roundini  <= 0:
-				print("YOU WIN!")
+			if combate(inistat, fstat) == -1 :
 				break
+			
+			else:
+				gameLoop = False
 				
-			if roundf  <= 0:
-				print("No céu tem pão?")
-				break
 			
 	if op.lower() == "dormir" :
-		break
+		gameLoop = False
 		
 	else :
 		print("Comando errado")
-			
+		
+if not gameLoop:
+	print("No céu tem pão")
