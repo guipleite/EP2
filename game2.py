@@ -100,13 +100,23 @@ while gameLoop:
 			if x ["nome"] == ini["nome"] :
 				inistat=[x["poder"],x["vida"],x["defesa"]]	
 		
-		af = str(input("\n Deseja FUGIR ou ATACAR \n?")
+		af = str(input("\n Deseja FUGIR ou ATACAR \n?"))
 		
-		if af == "fugir" :
+		if af.lower() == "fugir":
 			f = random.randint(0,10)
 			if f < 7 :
 				break #(?)
 			else :
+			
+				insperdex(dex)
+			
+				vF = fstat [1]
+				vI = inistat [1]
+				pF = fstat [0]
+				pI = inistat [0]
+				dF = fstat [2]
+				dI = inistat [2]
+			
 				CombatF(vF,vI,pF,pI,dF,dI)
 				
 		if af.lower() == "atacar" :
