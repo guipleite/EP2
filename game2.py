@@ -39,7 +39,7 @@ def Combat (vF,vI,pF,pI,dF,dI):
 			return gameLoop == False
 			#break
 			
-def CombatF (vF,vI,pF,pI,dF,dI):
+def CombatF (vF,vI,pF,pI,dF,dI):  #COMBATE SE A FUGA DER RUIM
 	while vF > 0 or vI >0 :
 		
 		sorte = random.randint(0,100)    # SISTEMA DE SORTE F
@@ -62,13 +62,15 @@ def CombatF (vF,vI,pF,pI,dF,dI):
 			break
 dex = []
 def insperdex (dex):						#INSPERDEX NF
-	ld = len(dex)
-	for i in range(ld):
-		if ini["nome"] in dex:
-			continue
-		else :
-			dex.append(ini["nome"])
-			
+	# ld = len(dex)
+	# for i in range(ld):
+		# if ini["nome"] in dex:
+			# continue
+		# else :
+			# dex.append(ini["nome"])
+	
+	
+	dex.append(ini["nome"])		
 print("Você pode encontrar esses inspermons por aí: \n")	
 with open('inspermons.json') as arquivo:
 		inspermons = json.load(arquivo)
@@ -124,10 +126,10 @@ while gameLoop == True:
 			
 			insperdex(dex)
 			
-			vF = fstat [1]
-			vI = inistat [1]
 			pF = fstat [0]
 			pI = inistat [0]
+			vF = fstat [1]
+			vI = inistat [1]
 			dF = fstat [2]
 			dI = inistat [2]
 				
@@ -140,5 +142,6 @@ while gameLoop == True:
 	else :
 		#print("\n Comando errado")
 		continue	
+		
 print(' \n OBRIGADO POR JOGAR INSPERMON! \n')
 print(dex)
