@@ -61,14 +61,12 @@ def CombatF (vF,vI,pF,pI,dF,dI):  #COMBATE SE A FUGA DER RUIM
 			print("YOU WIN \n")
 			break
 dex = []
-def insperdex (dex):						#INSPERDEX NF
-	# ld = len(dex)
-	# for i in range(ld):
-		# if ini["nome"] in dex:
-			# continue
-		# else :
-			# dex.append(ini["nome"])
-	
+def insperdex (dex,ini):						#INSPERDEX NF
+
+	if ini["nome"] not in dex :
+		dex.append(ini["nome"])
+	# else :
+		# continue
 	
 	dex.append(ini["nome"])		
 print("Você pode encontrar esses inspermons por aí: \n")	
@@ -108,15 +106,18 @@ while gameLoop == True:
 		if af.lower() == "fugir":
 			f = random.randint(0,10)
 			if f < 7 :
-				gameLoop = False #(?)
+				print("Você fugiu")
+				break #(?)
+				
 			else :
+				print("Deu ruim")
+				
+				insperdex(dex,ini)
 			
-				insperdex(dex)
-			
-				vF = fstat [1]
-				vI = inistat [1]
 				pF = fstat [0]
 				pI = inistat [0]
+				vF = fstat [1]
+				vI = inistat [1]
 				dF = fstat [2]
 				dI = inistat [2]
 			
@@ -124,7 +125,7 @@ while gameLoop == True:
 				
 		if af.lower() == "atacar" :
 			
-			insperdex(dex)
+			insperdex(dex,ini)
 			
 			pF = fstat [0]
 			pI = inistat [0]
