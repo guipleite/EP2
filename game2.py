@@ -36,8 +36,8 @@ def Combat (vF,vI,pF,pI,dF,dI):
 		vF = vF - dF - (pI*mod)
 		if vF <= 0:
 			print('NO CEU TEM PAO?')
-			#return gameLoop == False
-			break
+			return gameLoop == False
+			#break
 			
 def CombatF (vF,vI,pF,pI,dF,dI):
 	while vF > 0 or vI >0 :
@@ -60,7 +60,7 @@ def CombatF (vF,vI,pF,pI,dF,dI):
 		if vI <= 0 :
 			print("YOU WIN \n")
 			break
-
+dex = []
 def insperdex (dex):						#INSPERDEX NF
 	ld = len(dex)
 	for i in range(ld):
@@ -76,7 +76,7 @@ for ipmon in inspermons:
 		mostra_ipmon(ipmon)
 		
 fstat = []
-dex = []
+
 pokem = str(input("Escolha um inspermon \n"))
 poke = pokem.lower()
 
@@ -89,7 +89,7 @@ gameLoop = True
 combatLoop = True
 choiceLoop = True
 
-while gameLoop:
+while gameLoop == True:
 
 	op = str(input("Deseja Passear ou Dormir? \n"))
 			
@@ -138,7 +138,7 @@ while gameLoop:
 			gameLoop = False
 			
 	else :
-		print("\n Comando errado")
-			
+		#print("\n Comando errado")
+		continue	
 print(' \n OBRIGADO POR JOGAR INSPERMON! \n')
 print(dex)
