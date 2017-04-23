@@ -36,7 +36,8 @@ def Combat (vF,vI,pF,pI,dF,dI):
 		vF = vF - dF - (pI*mod)
 		if vF <= 0:
 			print('NO CEU TEM PAO?')
-			return gameLoop == False
+			#return gameLoop == False
+			break
 			
 def CombatF (vF,vI,pF,pI,dF,dI):
 	while vF > 0 or vI >0 :
@@ -51,14 +52,14 @@ def CombatF (vF,vI,pF,pI,dF,dI):
 			mod = 0.3
 			#print('Ataque pouco efetivo')
 		
-		vI = vI - dI - (pF*mod)
-		if vI <= 0 :
-			print("YOU WIN \n")
-			break
 		vF = vF - dF - (pI*mod)
 		if vF <= 0:
 			print('NO CEU TEM PAO?')
 			return gameLoop == False
+		vI = vI - dI - (pF*mod)
+		if vI <= 0 :
+			print("YOU WIN \n")
+			break
 
 def insperdex (dex):						#INSPERDEX NF
 	ld = len(dex)
@@ -100,12 +101,12 @@ while gameLoop:
 			if x ["nome"] == ini["nome"] :
 				inistat=[x["poder"],x["vida"],x["defesa"]]	
 		
-		af = str(input("\n Deseja FUGIR ou ATACAR \n?"))
+		af = str(input("\n Deseja FUGIR ou ATACAR? \n"))
 		
 		if af.lower() == "fugir":
 			f = random.randint(0,10)
 			if f < 7 :
-				break #(?)
+				gameLoop = False #(?)
 			else :
 			
 				insperdex(dex)
