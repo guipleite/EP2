@@ -81,8 +81,8 @@ for i in inspermons:
 # print (fstat)
 
 gameLoop = True
-combatLoop = True
-choiceLoop = True
+#combatLoop = True
+#choiceLoop = True
 
 while gameLoop == True:
 
@@ -116,10 +116,9 @@ while gameLoop == True:
 				dF = fstat [2]
 				dI = inistat [2]
 			
-				c = CombatF(vF,vI,pF,pI,dF,dI)
-				if c == 1:
-					break
-				
+				cf = CombatF(vF,vI,pF,pI,dF,dI)
+				if cf == 1:
+					gameLoop = False				
 		if af.lower() == "atacar" :
 			
 			pF = fstat [0]
