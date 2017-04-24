@@ -46,7 +46,7 @@ def CombatF (vF,vI,pF,pI,dF,dI):  #COMBATE SE A FUGA DER RUIM
 		
 		vF = vF - dF - (pI*mod)
 		if vF <= 0:
-			print('E MORREU ...'')
+			print('E MORREU ...')
 			return 1
 			break
 		vI = vI - dI - (pF*mod)

@@ -18,16 +18,28 @@
 		"defesa" : 10
 	},
 	{
-		"nome" : "xibiu",
+		"nome" : "frangomon",
 		"poder" : 1,
 		"vida" : 1,
 		"defesa" : 1
 	},
 	{
-		"nome" : "ximbinha",
+		"nome" : "monstromon",
 		"poder" : 10,
 		"vida" : 10000,
 		"defesa" : 0
 	}
+,
+	{
+		"nome" : "dollynho",
+		"poder" : 70,
+		"vida" : 40,
+		"defesa" : 30	}
+
+,	{
+		"nome" : "zubatman",
+		"poder" : 30 ,
+		"vida" : 100,
+		"defesa" : 20	}
 
 ]
