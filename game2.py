@@ -26,7 +26,7 @@ def Combat (vF,vI,pF,pI,dF,dI):
 			break
 		vF = vF - dF - (pI*mod)
 		if vF <= 0:
-			print('NO CEU TEM PAO?')
+			print('E MORREU ...')
 			#return gameLoop == False
 			#break
 			return 1
@@ -42,28 +42,28 @@ def CombatF (vF,vI,pF,pI,dF,dI):  #COMBATE SE A FUGA DER RUIM
 			mod = 1
 		if sorte < 10 :
 			mod = 0.3
-			#print('Ataque pouco efetivo')
+			#print('Não foi muito efetivo')
 		
 		vF = vF - dF - (pI*mod)
 		if vF <= 0:
-			print('NO CEU TEM PAO?')
-			return gameLoop == False
+			print('E MORREU ...'')
+			return 1
+			break
 		vI = vI - dI - (pF*mod)
 		if vI <= 0 :
 			print("YOU WIN \n")
-			#break
-			return 1
+			break
+			
 dex = []
 idex = []
-def insperdex (dex,ini):						#INSPERDEX NF
-
-	if ini["nome"] not in dex :
-		dex.append(ini["nome"])
-	# for z in dex :
-		# if dex.count(z) > 1 and z not in idex :
-			# dex.append(z)
+def insperdex (dex):						#INSPERDEX NF
+	# for i in dex:
+		# if i not in idex:
+			# idex.append(i)	
+	# print(idex)
+	id = list(set(dex))
+	return id
 	
-	dex.append(ini["nome"])		
 print("Você pode encontrar esses inspermons por aí: \n")	
 with open('inspermons.json') as arquivo:
 		inspermons = json.load(arquivo)
@@ -77,7 +77,7 @@ poke = pokem.lower()
 
 for i in inspermons:
 	if i ["nome"] == poke :
-		fstat=[i["poder"],i["vida"],i["defesa"]]
+		fstat=[i["poder"],i["vida"],i["defesa"]]  #PASSA OS STATS DO INSPERMON PARA UMA LISTA
 # print (fstat)
 
 gameLoop = True
@@ -86,7 +86,7 @@ gameLoop = True
 
 while gameLoop == True:
 
-	op = str(input("Deseja PASSEAR ou DORMIR? \n"))
+	op = str(input("\n Deseja PASSEAR , DORMIR ou ver o INSPERDEX ? \n"))
 			
 	if op.lower() == "passear" :
 		inte = random.randrange(len(inspermons))
@@ -96,14 +96,14 @@ while gameLoop == True:
 			if x ["nome"] == ini["nome"] :
 				inistat=[x["poder"],x["vida"],x["defesa"]]	
 		
-		insperdex(dex,ini)
+		dex.append(ini["nome"])
 		
 		af = str(input("\n Deseja FUGIR ou ATACAR? \n"))
 		
 		if af.lower() == "fugir":
 			f = random.randint(0,10)
 			if f < 7 :
-				print("Você fugiu")
+				print("Você fugiu \n")
 				#break #(?)
 				
 			else :
@@ -118,7 +118,8 @@ while gameLoop == True:
 			
 				cf = CombatF(vF,vI,pF,pI,dF,dI)
 				if cf == 1:
-					gameLoop = False				
+					gameLoop = False
+					break
 		if af.lower() == "atacar" :
 			
 			pF = fstat [0]
@@ -131,17 +132,26 @@ while gameLoop == True:
 			c = Combat(vF,vI,pF,pI,dF,dI)
 			if c == 1:
 				break
-							
-				
-	if op.lower() == "dormir" :
-			gameLoop = False
+						
+		else :
+			continue
 			
+	if op.lower() == "insperdex":
+		print("Você tem esses INSPERMONS no seu INSPERDEX : \n")
+		print(insperdex(dex))
+		continue	
+		
+	if op.lower() == "dormir" :
+		gameLoop = False
+			
+	
+	
 	else :
 		#print("\n Comando errado")
 		continue	
 		
-print(' \n OBRIGADO POR JOGAR INSPERMON! \n')
-print(dex)
+print (' \n	OBRIGADO POR JOGAR INSPERMON! \n Você encontrou esses INSPERMONS na sua jornada:')
+print (insperdex(dex))
 
 
 
