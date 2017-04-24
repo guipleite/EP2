@@ -1,14 +1,5 @@
 import random
 import json
-
-#from guidi import Combat
-
-# def vidaF(pI, dF):
-	# danoF = dF-pI
-	# return danoF
-# def vidaIni(pF, dI):
-	# danoIni = dI-pF
-	# return danoIni
 	
 def mostra_ipmon(ipmon):
 	print("Inspermon : {0}".format(ipmon["nome"]))
@@ -17,7 +8,7 @@ def mostra_ipmon(ipmon):
 	print("defesa = {0}\n".format(ipmon["defesa"]))		
 	
 def Combat (vF,vI,pF,pI,dF,dI):
-	while vF > 0 or vI >0 :
+	while vF > 0 or vI > 0 :
 		
 		sorte = random.randint(0,100)    # SISTEMA DE SORTE F
 		if sorte <= 100 :
@@ -36,8 +27,9 @@ def Combat (vF,vI,pF,pI,dF,dI):
 		vF = vF - dF - (pI*mod)
 		if vF <= 0:
 			print('NO CEU TEM PAO?')
-			return gameLoop == False
+			#return gameLoop == False
 			#break
+			return 1
 			
 def CombatF (vF,vI,pF,pI,dF,dI):  #COMBATE SE A FUGA DER RUIM
 	while vF > 0 or vI >0 :
@@ -59,14 +51,17 @@ def CombatF (vF,vI,pF,pI,dF,dI):  #COMBATE SE A FUGA DER RUIM
 		vI = vI - dI - (pF*mod)
 		if vI <= 0 :
 			print("YOU WIN \n")
-			break
+			#break
+			return 1
 dex = []
+idex = []
 def insperdex (dex,ini):						#INSPERDEX NF
 
 	if ini["nome"] not in dex :
 		dex.append(ini["nome"])
-	# else :
-		# continue
+	# for z in dex :
+		# if dex.count(z) > 1 and z not in idex :
+			# dex.append(z)
 	
 	dex.append(ini["nome"])		
 print("Você pode encontrar esses inspermons por aí: \n")	
@@ -91,7 +86,7 @@ choiceLoop = True
 
 while gameLoop == True:
 
-	op = str(input("Deseja Passear ou Dormir? \n"))
+	op = str(input("Deseja PASSEAR ou DORMIR? \n"))
 			
 	if op.lower() == "passear" :
 		inte = random.randrange(len(inspermons))
@@ -101,19 +96,19 @@ while gameLoop == True:
 			if x ["nome"] == ini["nome"] :
 				inistat=[x["poder"],x["vida"],x["defesa"]]	
 		
+		insperdex(dex,ini)
+		
 		af = str(input("\n Deseja FUGIR ou ATACAR? \n"))
 		
 		if af.lower() == "fugir":
 			f = random.randint(0,10)
 			if f < 7 :
 				print("Você fugiu")
-				break #(?)
+				#break #(?)
 				
 			else :
 				print("Deu ruim")
 				
-				insperdex(dex,ini)
-			
 				pF = fstat [0]
 				pI = inistat [0]
 				vF = fstat [1]
@@ -121,11 +116,11 @@ while gameLoop == True:
 				dF = fstat [2]
 				dI = inistat [2]
 			
-				CombatF(vF,vI,pF,pI,dF,dI)
+				c = CombatF(vF,vI,pF,pI,dF,dI)
+				if c == 1:
+					break
 				
 		if af.lower() == "atacar" :
-			
-			insperdex(dex,ini)
 			
 			pF = fstat [0]
 			pI = inistat [0]
@@ -134,8 +129,10 @@ while gameLoop == True:
 			dF = fstat [2]
 			dI = inistat [2]
 				
-			Combat(vF,vI,pF,pI,dF,dI)
-						
+			c = Combat(vF,vI,pF,pI,dF,dI)
+			if c == 1:
+				break
+							
 				
 	if op.lower() == "dormir" :
 			gameLoop = False
@@ -146,3 +143,7 @@ while gameLoop == True:
 		
 print(' \n OBRIGADO POR JOGAR INSPERMON! \n')
 print(dex)
+
+
+
+#FOI MAL N DEU PRA ACABAR
